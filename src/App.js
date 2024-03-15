@@ -1,24 +1,29 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-// import './App.css'; // You can import your CSS file here if needed
+import React from "react";
+import Home from "./components/Home";
+// import Test from "./components/Test";
+import { useDispatch, useSelector } from "react-redux";
 
 const App = () => {
-  const counter = useSelector(state => state.custom.counter);
-  const dispatch = useDispatch();
+ const dispatch =useDispatch()
+  const count = useSelector(state => state.custom.count);
 
-  const increment = () => {
-    dispatch({ type: 'INCREMENT' });
-  };
+  // const count = 30;
+  const minusHandler = () => {dispatch({ type: 'DECREMENT' })};
 
-  const decrement = () => {
-    dispatch({ type: 'DECREMENT' });
-  };
+  const plusHandler = () => {dispatch({ type: 'INCREMENT' })};
+  
+
 
   return (
-    <div className="App">
-      <h1>Counter: {counter}</h1>
-      <button onClick={increment}>Increment</button>
-      <button onClick={decrement}>Decrement</button>
+    <div>
+      hi this is an app main componenet
+
+      <Home/>
+      <div>
+        <button onClick={minusHandler}> minus </button>
+        <p> {count}</p>
+        <button onClick={plusHandler}> plus </button>{" "}
+      </div>
     </div>
   );
 };
