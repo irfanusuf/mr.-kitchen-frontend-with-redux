@@ -1,16 +1,15 @@
 import React from "react";
 import Home from "./components/Home";
-// import Test from "./components/Test";
 import { useDispatch, useSelector } from "react-redux";
 
 const App = () => {
  const dispatch =useDispatch()
-  const count = useSelector(state => state.custom.count);
 
-  // const count = 30;
-  const minusHandler = () => {dispatch({ type: 'DECREMENT' })};
+const count = useSelector(state => state.custom.count);
 
-  const plusHandler = () => {dispatch({ type: 'INCREMENT' })};
+  const minusHandler = () => {dispatch({ type: 'decrement' })};
+
+  const plusHandler = () => {dispatch({ type: 'increment' })};
   
 
 

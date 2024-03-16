@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import customReducer from './reducers'
+import {customReducer , getPostsReducer} from './reducers'
 
 
 
@@ -8,7 +8,8 @@ const store = configureStore({
 
     reducer : {
 
-        custom : customReducer
+        custom : customReducer,
+        getPosts : getPostsReducer
     }
 })
 
