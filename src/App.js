@@ -1,6 +1,8 @@
 import React from "react";
 import Home from "./components/Home";
 import { useDispatch, useSelector } from "react-redux";
+import Post from "./components/Post";
+import CreateItem from "./components/CreateItem";
 
 const App = () => {
  const dispatch =useDispatch()
@@ -18,6 +20,8 @@ const count = useSelector(state => state.custom.count);
       hi this is an app main componenet
 
       <Home/>
+      <Post/>
+      <CreateItem/>
       <div>
         <button onClick={minusHandler}> minus </button>
         <p> {count}</p>

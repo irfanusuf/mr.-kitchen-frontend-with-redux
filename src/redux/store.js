@@ -1,48 +1,21 @@
 import { configureStore } from "@reduxjs/toolkit";
-import {customReducer , getPostsReducer} from './reducers'
-
-
+import {
+  customReducer,
+  getPostsReducer,
+  getPostReducer,
+  createItemReducer,
+} from "./reducers";
 
 const store = configureStore({
+  reducer: {
+    custom: customReducer,
+    getPosts: getPostsReducer,
+    getpost: getPostReducer,
+    createItem: createItemReducer,
+  },
+});
 
-
-    reducer : {
-
-        custom : customReducer,
-        getPosts : getPostsReducer
-    }
-})
-
-
-
-
-
-
-export default store
+export default store;
 
 
 
-
-
-
-
-
-
-
-
-// import { configureStore } from "@reduxjs/toolkit";
-// import customReducer from "./reducers";
-
-
-
-// const store = configureStore({
-
-//     reducer : {
-//         custom : customReducer, 
-//     }
-// })
-
-
-
-
-//     export default store 
