@@ -7,26 +7,18 @@ import CreateItem from "./components/CreateItem";
 const App = () => {
  const dispatch =useDispatch()
 
-const count = useSelector(state => state.custom.count);
 
-  const minusHandler = () => {dispatch({ type: 'decrement' })};
 
-  const plusHandler = () => {dispatch({ type: 'increment' })};
   
 
 
   return (
     <div>
-      hi this is an app main componenet
+          {/* landing page  */}
+      <Home/>      
 
-      <Home/>
-      <Post/>
-      <CreateItem/>
-      <div>
-        <button onClick={minusHandler}> minus </button>
-        <p> {count}</p>
-        <button onClick={plusHandler}> plus </button>{" "}
-      </div>
+
+  
     </div>
   );
 };

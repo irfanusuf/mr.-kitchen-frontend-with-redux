@@ -67,3 +67,56 @@ export const createItem =
       console.log(err.message);
     }
   };
+
+export const registerUser =
+  (username, email, password, image) => async (action) => {
+    try {
+      action({
+        type: "registerRequest",
+      });
+
+      const { data } = await axios.post("/user/register", {
+        username,
+        email,
+        password,
+        image,
+      });
+
+      action({
+        type: "registerSucess",
+        payload: data.message,
+      });
+    } catch (err) {
+      action({
+        type: "registerFailure",
+      });
+      console.log(err);
+    }
+  };
+
+
+  export const loginUser =
+  (email, password) => async (action) => {
+    try {
+      action({
+        type: "loginRequest",
+      });
+
+      const { data } = await axios.post("/user/login", {
+      
+        email,
+        password,
+       
+      });
+
+      action({
+        type: "loginSucess",
+        payload: data.message,
+      });
+    } catch (err) {
+      action({
+        type: "loginFailure",
+      });
+      console.log(err);
+    }
+  };
