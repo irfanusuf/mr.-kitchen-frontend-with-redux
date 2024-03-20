@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getItems } from "../redux/actions";
+import { getItems } from "../../redux/actions";
 
 const Post = () => {
   const dispatch = useDispatch();

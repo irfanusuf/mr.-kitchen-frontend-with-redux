@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { createItem } from "../redux/actions";
+import { createItem } from "../../redux/actions";
 
 const CreateItem = () => {
   const dispatch = useDispatch();

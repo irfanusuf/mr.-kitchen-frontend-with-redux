@@ -1,6 +1,7 @@
 import React,{useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllItems } from "../redux/actions";
+import { getAllItems } from "../../redux/actions";
+import './Home.scss'
 
 const Home = () => {
   const dispatch =useDispatch()
@@ -15,10 +16,10 @@ const Home = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className="home">
 
 
-      <h1> Hi this is a home</h1>
+      <h1> Hi this is Mr Kitchen</h1>
 
      
     </div>
