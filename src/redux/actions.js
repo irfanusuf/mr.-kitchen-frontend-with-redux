@@ -1,4 +1,5 @@
 import axios from "axios";
+const token =localStorage.getItem("token")
 
 export const getAllItems = () => async (action) => {
   try {
@@ -6,65 +7,83 @@ export const getAllItems = () => async (action) => {
       type: "request",
     });
 
-    const { data } = await axios.get("/allItems");
+    const { data } = await axios.get("/allItems" ,
+          {
+            headers : {
+              token : token
+            }
+           });
 
     action({
       type: "sucess",
-      messagePayload: data.message,
-      dataPayload: data,
+      message: data.message,
+      Payload: data.items,
     });
   } catch (error) {
     action({
       type: "failure",
+      message : error.message
     });
   }
 };
 
-export const getItems = (itemId) => async (action) => {
+ export const getItem = (itemId) => async (action) => {
   try {
     action({
       type: "postRequest",
     });
 
-    const { data } = await axios.get(`/items?itemId=${itemId}`);
+    const { data } = await axios.get(`/items?itemId=${itemId}` , 
+    {
+
+      headers : {
+        token : token
+      }
+    });
 
     action({
       type: "postSucess",
-      data: data,
+      payload: data.item,
       message: data.message,
     });
 
     console.log(data);
   } catch (err) {
+
     action({
       type: "postFailure",
+      message: err,
     });
 
     console.log(err);
   }
 };
 
+
+
+
 export const createItem =
-  (title, description, price, image) => async (action) => {
+  (formdata) => async (action) => {
     try {
       action({
         type: "createItemRequest",
       });
 
-      const { data } = await axios.post("/admin/createitem", {
-        title,
-        description,
-        price,
-        image,
-      });
+      const { data } = await axios.post("/admin/createitem", formdata);
 
       console.log(data);
 
       action({
         type: "createItemSucess",
+        message : data.message,
+        dataPayload : data.item
       });
     } catch (err) {
-      console.log(err.message);
+      action({
+        type : "createItemFailure",
+        message : err.message
+      })
+     
     }
   };
 
@@ -91,6 +110,12 @@ export const registerUser =
         type: "registerFailure",
       });
       console.log(err);
+    }
+    finally{
+
+      action({
+        type : "clearmessages"
+      })
     }
   };
 
@@ -120,3 +145,9 @@ export const registerUser =
       console.log(err);
     }
   };
+
+
+
+  export default getAllItems
+
+

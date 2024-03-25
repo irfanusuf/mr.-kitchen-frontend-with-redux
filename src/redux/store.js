@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import {
-  getPostsReducer,
-  getPostReducer,
+  getItemsReducer,
+  getItemReducer,
   createItemReducer,
   registerReducer,
   loginReducer,
@@ -17,8 +17,8 @@ import {
 
 const store = configureStore({
   reducer: {
-    getPosts: getPostsReducer,
-    getpost: getPostReducer,
+    getItems: getItemsReducer,
+    getItem: getItemReducer,
     createItem: createItemReducer,
     register : registerReducer ,
     login : loginReducer,

@@ -1,37 +1,79 @@
-import React from "react";
-import Home from "./components/sharedComponents/Home";
-import { useDispatch, useSelector } from "react-redux";
-// import Post from "./components/Post";
-// import CreateItem from "./components/CreateItem";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Navbar from "./components/sharedComponents/Navbar";
-import Footer from "./components/sharedComponents/Footer";
-import Login from "./components/userComponents/Login"
-import Register from "./components/userComponents/Register"
-import AllPosts from "./components/orderComponents/AllPosts"
-import Contact from "./components/sharedComponents/Contact"
+import React from 'react'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+
+
+// static imports 
+
+import Navbar from "./sharedComponents/Navbar";
+import Home from "./sharedComponents/Home";
+import Contact from "./sharedComponents/Contact";
+import Footer from "./sharedComponents/Footer";
+import NotFound from './sharedComponents/NotFound';
+
+
+import Payment from "./paymentComponents/Payment";
+import PaymentOptionDetails from './paymentComponents/paymentOptionDetails';
+import SecureIndex from "./paymentComponents/SecureIndex";
+
+
+import Register from "./userComponents/Register";
+import Login from "./userComponents/Login";
+import ForgotPass from './userComponents/ForgotPass';
+import ChangePass from './userComponents/ChangePass';
+import DeleteUser from './userComponents/DeleteUser';
+
+
+
+import AllItems from './orderComponensts/AllItems';
+import Item from './orderComponensts/Item';
+import CreateItem from './adminComponents/CreateItem';
+
+
+import OrderForm from "./orderComponensts/OrderForm";
 
 const App = () => {
-  const dispatch = useDispatch()
 
   return (
-
+  
     <BrowserRouter>
-      <Navbar />
-      <Routes>
+    <Navbar/>
+    <Routes>
 
-        <Route path="/" element={<Home />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path='/items' element={<AllPosts />}/>
+      {/* shared routes */}
+      <Route path="/" element={<Home />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="*" element={<NotFound />} />
 
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+      {/* user Routes */}
+      <Route path="/register" element={<Register/>} />
+      <Route path="/Login" element={<Login/>} />
+      <Route path='/Forgot-Password' element={<ForgotPass/>}/>
+      <Route path='/Change-Password' element={<ChangePass/>}/>
+      <Route path='/delete/user' element={<DeleteUser/>}/>
 
-  );
-};
+      {/* payment Routes */}
+      <Route path="/Payment" element={<Payment/>} />
+      <Route path="/PaymentOptionDetails" element={<PaymentOptionDetails/>} />
+      <Route path="/SecureIndex" element={<SecureIndex/>}  />
+      
+     
+      {/* order routes */}
+      <Route path='/items' element={<AllItems />}/>
 
-export default App;
+      <Route path="/items/:itemId"element={<Item/>}/>
+
+      <Route path="/user/placeorder" element={<OrderForm/>} />
+
+      {/* admin routes */}
+
+      <Route path='/admin/createitem' element={<CreateItem/>}/>
+
+    </Routes>
+    <Footer/>
+  </BrowserRouter>
+
+  )
+}
+
+export default App

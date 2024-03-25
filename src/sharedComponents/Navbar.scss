@@ -1,0 +1,150 @@
+.navbar {
+  background-color: black;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+
+  > .brand-name {
+    width: 20%;
+    font-size: 32px;
+    font-family: fantasy;
+    > li > a {
+      text-decoration: none;
+      color: aliceblue;
+      &:hover {
+        color: green;
+      }
+    }
+  }
+
+  > .central-nav {
+    width: 30%;
+    display: flex;
+
+    > a {
+      color: aliceblue;
+      text-decoration: none;
+      border: 1px solid green;
+      border-radius: 8px;
+      padding: 5px 15px;
+      margin-left: 10px;
+      transition: all ease-in 0.1s;
+      &:hover {
+        color: green;
+      }
+    }
+  }
+
+  > .review {
+    width: 30%;
+    color: aliceblue;
+    display: flex;
+    align-items: center;
+    > a {
+      color: aliceblue;
+      text-decoration: none;
+      border: 1px solid green;
+      border-radius: 8px;
+      padding: 5px 15px;
+      margin-left: 10px;
+      transition: all ease-in 0.1s;
+      &:hover {
+        color: green;
+      }
+    }
+  }
+
+  > .nav-icons {
+    display: flex;
+    width: 20%;
+    justify-content: right;
+    margin-right: 20px;
+    > a > img {
+      width: 30px;
+      margin-left: 10px;
+    }
+    > .menu-icon {
+      margin-right: 30px;
+      color: aliceblue;
+      font-size: 25px;
+      font-weight: 800;
+    }
+    > .nav-dropdown {
+      position: absolute;
+      background-color: azure;
+      top: 30px;
+      margin-left: 30px;
+      color: black;
+      list-style-type: none;
+      padding-left: 0;
+      width: 300px;
+      height: 200px;
+      border-radius: 10px;
+
+      > li {
+        border-radius: 10px;
+        background-color: azure;
+        padding-left: 20px;
+        padding-bottom: 5px;
+        font-weight: 600;
+
+        &:hover {
+          background-color: green;
+          scale: 1.05;
+          color: white;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  > .burger {
+    color: antiquewhite;
+    font-size: 30px;
+    margin-right: 20px;
+    align-items: center;
+    justify-content: center;
+    display: none;
+
+    > .side-menu {
+      position: absolute;
+      top: 50px;
+      left: 0;
+      height: 85vh;
+      width: 300px;
+      z-index: +2;
+      background-color: rgba(240, 248, 255, 0.534);
+      border-radius: 10px 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .navbar {
+    justify-content: space-between;
+
+    > .brand-name {
+      width: 50%;
+    }
+
+    > .central-nav {
+      display: none;
+    }
+
+    > .review {
+      display: none;
+    }
+
+    > .nav-icons {
+      display: none;
+    }
+
+    > .burger {
+      display: flex;
+    }
+  }
+}

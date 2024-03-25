@@ -1,25 +1,25 @@
 import { createReducer } from "@reduxjs/toolkit";
 
-export const getPostsReducer = createReducer({}, (builder) => {
+export const getItemsReducer = createReducer({}, (builder) => {
   builder
-    .addCase("request", (state, action) => {
+    .addCase("request", (state) => {
       state.loading = true;
     })
     .addCase("sucess", (state, action) => {
       state.loading = false;
-      state.posts = action.dataPayload;
-      state.message = action.messagePayload;
+      state.items = action.Payload;
+      state.message = action.message;
     })
     .addCase("failure", (state, action) => {
       state.loading = false;
-      state.message = action.payload;
+      state.message = action.message;
     })
-    .addCase("clearError", (state, action) => {
+    .addCase("clearError", (state) => {
       state.message = null;
     });
 });
 
-export const getPostReducer = createReducer({}, (builder) => {
+export const getItemReducer = createReducer({}, (builder) => {
   builder
   .addCase("postRequest", (state, action) => {
     state.loading = true;
@@ -27,7 +27,7 @@ export const getPostReducer = createReducer({}, (builder) => {
 
   builder.addCase("postSucess", (state, action) => {
     state.loading = false;
-    state.data = action.data;
+    state.data = action.payload;
     state.message = action.message;
   });
 
@@ -45,11 +45,16 @@ export const createItemReducer = createReducer({}, (builder) => {
     .addCase("createItemSucess", (state, action) => {
       state.loading = false;
       state.message = action.message;
+      state.data = action.dataPayload
     })
     .addCase("createItemFailure", (state, action) => {
       state.loading = false;
       state.message = action.message;
-    });
+    })
+    .addCase("clearmessages" , (state) =>{
+
+      state.message = null
+    })
 });
 
 export const registerReducer = createReducer({}, (builder) => {
