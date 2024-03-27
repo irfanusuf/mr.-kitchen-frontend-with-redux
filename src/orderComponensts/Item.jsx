@@ -5,15 +5,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { getItem } from "../redux/actions";
 
 const Item = () => {
-  const { itemId } = useParams();
+
   const [showaddress, setShowAddress] = useState(false);
-  const dispatch = useDispatch();
+  // const { itemId } = useParams();
+  // const dispatch = useDispatch();
 
-  const item = useSelector((state) => state.getItem.item); //redux useSelector
+  const item = useSelector((state) => state.getItems.items[0]); //redux useSelector
 
-  useEffect(() => {
-    dispatch(getItem(itemId));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(getItem(itemId));
+  // }, []);
 
   return (
     <div className="container-m">

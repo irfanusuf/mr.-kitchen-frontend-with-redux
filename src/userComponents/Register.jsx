@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Form.scss";
-import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import foodIcon from "../assests/mimibubu.gif";
@@ -9,16 +8,21 @@ import pizzaImg from "../assests/pizza 1.jpg";
 import pizzaImg2 from "../assests/pizza 2.jpg";
 import chickenImg from "../assests/pexels-denys-gromov-12916901-removebg-preview.png";
 import { MdArrowBackIosNew, MdArrowForwardIos } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
+import { registerUser } from "../redux/actions";
 
 const Register = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [displayImg, setDisplayImg] = useState(0);
-  const [loading, setLoading] = useState(false);
+
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [image, setImage] = useState(null);
+  const loading = useSelector((state) => state.register.loading);
+  const message = useSelector((state) => state.register.message);
 
   const handleImage = (e) => {
     const file = e.target.files[0]; // selected files in the array of files
@@ -41,40 +45,27 @@ const Register = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    try {
-      setLoading(true);
-      const formData = new FormData();
+    const formData = new FormData();
+    formData.append("username", username);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("image", image);
 
-      formData.append("username", username);
-      formData.append("email", email);
-      formData.append("password", password);
-      formData.append("image", image);
+    dispatch(registerUser(formData));
 
-      const response = await axios.post(
-        "http://localhost:4000/user/register",
-        formData
-      );
-
-      if (response.data.message === "Registration Succesful") {
-        // toast.success(response.data.message);
-
+    if (message === "Registration Succesful") {
+      toast.success("Registration Succesful");
         setUsername("")
         setEmail("")
         setPassword("")
         setImage(null)
-
-        navigate("/login");
-      } else {
-        toast.error(response.data.message);
-      }
-    } catch (error) {
-      setLoading(false);
-      toast.error("Server Error");
-     
-    } finally {
-      setLoading(false);
+        navigate("/login")
+    }
+    else{
+      toast.error(message)
     }
   };
+
 
   return (
     <>

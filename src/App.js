@@ -14,7 +14,7 @@ import NotFound from './sharedComponents/NotFound';
 
 import Payment from "./paymentComponents/Payment";
 import PaymentOptionDetails from './paymentComponents/paymentOptionDetails';
-import SecureIndex from "./paymentComponents/SecureIndex";
+
 
 
 import Register from "./userComponents/Register";
@@ -55,7 +55,7 @@ const App = () => {
       {/* payment Routes */}
       <Route path="/Payment" element={<Payment/>} />
       <Route path="/PaymentOptionDetails" element={<PaymentOptionDetails/>} />
-      <Route path="/SecureIndex" element={<SecureIndex/>}  />
+     
       
      
       {/* order routes */}

@@ -35,36 +35,43 @@ const Register = () => {
   };
 
 
+
+
+
   const handleDelete = async (e) => {
     e.preventDefault();
 
-    try {
-      setLoading(true);
-      const response = await axios.post(
-        "http://localhost:4000/user/delete/me",
-        formData
-      );
-        if(response.data.message === "User Deleted Succesfully"){
-                    toast.success("so gow delte jani");
+       
 
-                    // navigate('/')
 
-        }
-        else{
 
-            toast.error(response.data.message)
-        }
+    // try {
+    //   setLoading(true);
+    //   const response = await axios.post(
+    //     "http://localhost:4000/user/delete/me",
+    //     formData
+    //   );
+    //     if(response.data.message === "User Deleted Succesfully"){
+                  
+
+    //       navigate('/')
+
+    //     }
+    //     else{
+
+    //         toast.error(response.data.message)
+    //     }
 
       
 
 
-    } catch (error) {
-      setLoading(false);
-      console.error(error);
-      toast.error(" Server Error ");
-    } finally {
-      setLoading(false);
-    }
+    // } catch (error) {
+    //   setLoading(false);
+    //   console.error(error);
+    //   toast.error(" Server Error ");
+    // } finally {
+    //   setLoading(false);
+    // }
   };
 
   return (

@@ -1,5 +1,8 @@
 import { createReducer } from "@reduxjs/toolkit";
 
+
+
+// done 
 export const getItemsReducer = createReducer({}, (builder) => {
   builder
     .addCase("request", (state) => {
@@ -18,7 +21,7 @@ export const getItemsReducer = createReducer({}, (builder) => {
       state.message = null;
     });
 });
-
+// done 
 export const getItemReducer = createReducer({}, (builder) => {
   builder
   .addCase("postRequest", (state, action) => {
@@ -27,7 +30,7 @@ export const getItemReducer = createReducer({}, (builder) => {
 
   builder.addCase("postSucess", (state, action) => {
     state.loading = false;
-    state.data = action.payload;
+    state.item = action.payload;
     state.message = action.message;
   });
 
@@ -37,6 +40,7 @@ export const getItemReducer = createReducer({}, (builder) => {
   });
 });
 
+// Admin Functions
 export const createItemReducer = createReducer({}, (builder) => {
   builder
     .addCase("createItemRequest", (state) => {
@@ -51,12 +55,14 @@ export const createItemReducer = createReducer({}, (builder) => {
       state.loading = false;
       state.message = action.message;
     })
-    .addCase("clearmessages" , (state) =>{
+    // .addCase("clearmessages" , (state) =>{
 
-      state.message = null
-    })
+    //   state.message = null
+    // })
 });
 
+
+// user Functions    // done 
 export const registerReducer = createReducer({}, (builder) => {
   builder
   .addCase("registerRequest", (state, action) => {
@@ -71,9 +77,12 @@ export const registerReducer = createReducer({}, (builder) => {
     state.loading = false
     state.message = action.payload
   })
+  // .addCase("clearmessages" , (state )=>{
+  //   state.message = null
+  // })
   
 });
-
+  // done 
 export const loginReducer = createReducer({}, (builder) => {
   builder
   .addCase("loginRequest", (state, action) => {
@@ -82,42 +91,148 @@ export const loginReducer = createReducer({}, (builder) => {
   .addCase("loginSucess", (state ,action) =>{
 
     state.loading = false
-    state.message = action.payload
+    state.message = action.message
+    state.token = action.token
   })
   .addCase("loginFailure" , (state ,action) =>{
     state.loading = false
-    state.message = action.payload
+    state.message = action.message
   })
   
 });
-
 export const forgotPassWordReducer = createReducer({}, (builder) => {
   builder
-  .addCase("forgotRequest", (state, action) => {
+  .addCase("forgotRequest", (state) => {
     state.loading = true;
   })
   .addCase("forgotSucess", (state ,action) =>{
 
     state.loading = false
-    state.message = action.payload
+    state.message = action.message
   })
   .addCase("forgotFailure" , (state ,action) =>{
     state.loading = false
-    state.message = action.payload
+    state.message = action.message
+  })
+  .addCase ("clearErrors" , (state)=>{
+    state.message = null
   })
   
 });
+export const updatePasswordReducer = createReducer({}, (builder)=>{
+
+  builder.addCase("updatePassWordReq" , (state)=>{
+    state.loading =true
+
+  })
+  .addCase ("updatePassSucess" ,(state , action)=>{
+    state.loading = false
+    state.message = action.message
+    state.payload = action.payload
+
+  })
+  .addCase("updatePassFailure" , (state ,action)=>{
+    state.loading = false
+    state.message = action.message
+  })
+  .addCase("clearErrors" ,(state)=>{
+    state.message =null
+  })
+});
+export const deleteUserReducer = createReducer({},(builder)=>{
+  builder.addCase("delUserReq" , (state)=>{
+    state.loading =true
+
+  })
+  .addCase ("delUserSucess" ,(state , action)=>{
+    state.loading = false
+    state.message = action.message
+    state.payload = action.payload
+
+  })
+  .addCase("delUserFailure" , (state ,action)=>{
+    state.loading = false
+    state.message = action.message
+  })
+  .addCase("clearErrors" ,(state)=>{
+    state.message =null
+  })
 
 
+});
+export const logoutUserReducer = createReducer({},(builder)=>{
+  builder.addCase("logoutReq" , (state)=>{
+    state.loading =true
 
+  })
+  .addCase ("logoutSucess" ,(state , action)=>{
+    state.loading = false
+    state.message = action.message
+    state.payload = action.payload
 
+  })
+  .addCase("logoutFailure" , (state ,action)=>{
+    state.loading = false
+    state.message = action.message
+  })
+  .addCase("clearErrors" ,(state)=>{
+    state.message =null
+  })
+});
+export const changePasswordReducer = createReducer({},(builder)=>{
+  builder.addCase("changePassReq" , (state)=>{
+    state.loading =true
 
+  })
+  .addCase ("ChangePassSucess" ,(state , action)=>{
+    state.loading = false
+    state.message = action.message
+    state.payload = action.payload
 
+  })
+  .addCase("changePassFailure" , (state ,action)=>{
+    state.loading = false
+    state.message = action.message
+  })
+  .addCase("clearErrors" ,(state)=>{
+    state.message =null
+  })
+});
+export const likePostReducer = createReducer({},(builder)=>{
+  builder.addCase("likeReq" , (state)=>{
+    state.loading =true
 
+  })
+  .addCase ("likeSucess" ,(state , action)=>{
+    state.loading = false
+    state.message = action.message
+    state.payload = action.payload
 
-export const updatePasswordReducer = createReducer({}, (builder)=>{});
-export const deleteUserReducer = createReducer({},(builder)=>{});
-export const logoutUserReducer = createReducer({},(builder)=>{});
-export const changePasswordReducer = createReducer({},(builder)=>{});
-export const likePostReducer = createReducer({},(builder)=>{});
-export const unlikePostReducer = createReducer({},(builder)=>{});
+  })
+  .addCase("likeFailure" , (state ,action)=>{
+    state.loading = false
+    state.message = action.message
+  })
+  .addCase("clearErrors" ,(state)=>{
+    state.message =null
+  })
+});
+export const unlikePostReducer = createReducer({},(builder)=>{
+  builder.addCase("unlikeReq" , (state)=>{
+    state.loading =true
+
+  })
+  .addCase ("unlikeSucess" ,(state , action)=>{
+    state.loading = false
+    state.message = action.message
+    state.payload = action.payload
+
+  })
+  .addCase("unlikeFailure" , (state ,action)=>{
+    state.loading = false
+    state.message = action.message
+  })
+  .addCase("clearErrors" ,(state)=>{
+    state.message =null
+  })
+});
